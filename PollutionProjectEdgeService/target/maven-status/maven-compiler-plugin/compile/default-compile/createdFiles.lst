@@ -1,0 +1,9 @@
+be\thomasmore\PollutionProjectEdgeService\models\Continent.class
+be\thomasmore\PollutionProjectEdgeService\PollutionProjectEdgeServiceApplication.class
+be\thomasmore\PollutionProjectEdgeService\models\ContinentPollution.class
+be\thomasmore\PollutionProjectEdgeService\controllers\ListingController$1.class
+be\thomasmore\PollutionProjectEdgeService\models\GenericResponseWrapper.class
+be\thomasmore\PollutionProjectEdgeService\controllers\ListingController.class
+be\thomasmore\PollutionProjectEdgeService\models\CountryPollution.class
+be\thomasmore\PollutionProjectEdgeService\models\ListingItem.class
+be\thomasmore\PollutionProjectEdgeService\models\Country.class
