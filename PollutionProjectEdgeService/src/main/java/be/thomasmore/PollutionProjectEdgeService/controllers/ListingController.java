@@ -25,8 +25,8 @@ public class ListingController {
     private ObjectMapper objectMapper;
 
 
-    @GetMapping("movie/{title}")
-    public List<ListingItem> getListingItemsByMovieTitle(@PathVariable("name") String name){
+    @GetMapping("country/{name}")
+    public List<ListingItem> getListingItemsByCountryName(@PathVariable("name") String name){
 
         Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?title=" + name, Country.class);
 
