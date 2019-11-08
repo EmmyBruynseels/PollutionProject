@@ -28,7 +28,7 @@ public class ListingController {
     @GetMapping("country/{name}")
     public List<ListingItem> getListingItemsByCountryName(@PathVariable("name") String name){
 
-        Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?title=" + name, Country.class);
+        Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
 
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryid=" + country.getId(), GenericResponseWrapper.class);
