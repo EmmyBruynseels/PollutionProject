@@ -1,3 +1,10 @@
+/PollutionProjectContinent/.idea/*
+/PollutionProjectContinentPollution/.idea/*
+/PollutionProjectEdgeService/.idea/*
+/PollutionProjectEurekaServer/.idea/*
+/PollutionProjectCountry/.idea/*
+/PollutionProjectCountryPollution/.idea/*
+
 # Compiled class file
 *.class
 
