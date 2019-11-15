@@ -1,9 +1,6 @@
 package be.thomasmore.PollutionProjectEdgeService.controllers;
 
-import be.thomasmore.PollutionProjectEdgeService.models.Country;
-import be.thomasmore.PollutionProjectEdgeService.models.CountryPollution;
-import be.thomasmore.PollutionProjectEdgeService.models.GenericResponseWrapper;
-import be.thomasmore.PollutionProjectEdgeService.models.ListingItem;
+import be.thomasmore.PollutionProjectEdgeService.models.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +21,21 @@ public class ListingController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    @GetMapping("countries/")
+    public List<Country> getAllCountries(){
+
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountry/countries/", GenericResponseWrapper.class);
+        return objectMapper.convertValue(wrapper.get_embedded().get("countries"), new TypeReference<List<Country>>() { });
+
+    }
+
+    @GetMapping("continents/")
+    public List<Continent> getAllContinents(){
+
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinent/continents/", GenericResponseWrapper.class);
+        return objectMapper.convertValue(wrapper.get_embedded().get("continents"), new TypeReference<List<Continent>>() { });
+
+    }
 
     @GetMapping("country/{name}")
     public List<ListingItem> getListingItemsByCountryName(@PathVariable("name") String name){
