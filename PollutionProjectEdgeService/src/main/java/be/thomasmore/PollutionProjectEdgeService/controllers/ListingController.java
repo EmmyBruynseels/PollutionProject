@@ -30,8 +30,7 @@ public class ListingController {
 
         Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
 
-
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryid=" + country.getId(), GenericResponseWrapper.class);
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID="+country.getId(), GenericResponseWrapper.class);
 
         List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
 
@@ -40,5 +39,15 @@ public class ListingController {
             returnList.add(new ListingItem(country.getName(), cp.getPollution(), cp.getYear()));
         }
         return returnList;
+    }
+
+    @GetMapping("countryPollution/{id}")
+    public List<CountryPollution> getCountryPollution(@PathVariable("id") String id){
+
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID="+id, GenericResponseWrapper.class);
+
+        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
+
+        return countryPollutions;
     }
 }
