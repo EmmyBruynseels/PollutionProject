@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../PollutionProjectContinent/PollutionProjectContinent.iml" filepath="$PROJECT_DIR$/../PollutionProjectContinent/PollutionProjectContinent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PollutionProjectContinentPollution/PollutionProjectContinentPollution.iml" filepath="$PROJECT_DIR$/../PollutionProjectContinentPollution/PollutionProjectContinentPollution.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PollutionProjectCountry/PollutionProjectCountry.iml" filepath="$PROJECT_DIR$/../PollutionProjectCountry/PollutionProjectCountry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PollutionProjectCountryPollution/PollutionProjectCountryPollution.iml" filepath="$PROJECT_DIR$/../PollutionProjectCountryPollution/PollutionProjectCountryPollution.iml" />
       <module fileurl="file://$PROJECT_DIR$/PollutionProjectEdgeService.iml" filepath="$PROJECT_DIR$/PollutionProjectEdgeService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PollutionProjectEurekaServer/PollutionProjectEurekaServer.iml" filepath="$PROJECT_DIR$/../PollutionProjectEurekaServer/PollutionProjectEurekaServer.iml" />
     </modules>
   </component>
 </project>

@@ -21,7 +21,7 @@ public class Country {
     @Column(name="continentID")
     private int continentID;
 
-    @Column(name="countryCode")
+    @Column(name="countrycode")
     private String countryCode;
 
     @Column(name="population")
@@ -36,7 +36,7 @@ public class Country {
     @Column(name="agriculture")
     private double agriculture;
 
-    @Column(name="popDensity")
+    @Column(name="popdensity")
     private double popDensity;
 
     @Column(name="literacy")

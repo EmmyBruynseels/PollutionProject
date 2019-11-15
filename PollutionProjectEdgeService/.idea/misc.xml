@@ -4,6 +4,11 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../PollutionProjectCountryPollution/pom.xml" />
+        <option value="$PROJECT_DIR$/../PollutionProjectEurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../PollutionProjectCountry/pom.xml" />
+        <option value="$PROJECT_DIR$/../PollutionProjectContinentPollution/pom.xml" />
+        <option value="$PROJECT_DIR$/../PollutionProjectContinent/pom.xml" />
       </list>
     </option>
   </component>

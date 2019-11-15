@@ -6,16 +6,31 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="PollutionProjectContinentPollution" />
+        <module name="PollutionProjectCountryPollution" />
         <module name="PollutionProjectEdgeService" />
+        <module name="PollutionProjectCountry" />
+        <module name="PollutionProjectContinent" />
+        <module name="PollutionProjectEurekaServer" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="PollutionProjectContinent" target="1.8" />
+      <module name="PollutionProjectContinentPollution" target="1.8" />
+      <module name="PollutionProjectCountry" target="1.8" />
+      <module name="PollutionProjectCountryPollution" target="1.8" />
       <module name="PollutionProjectEdgeService" target="1.8" />
+      <module name="PollutionProjectEurekaServer" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PollutionProjectContinent" options="-parameters" />
+      <module name="PollutionProjectContinentPollution" options="-parameters" />
+      <module name="PollutionProjectCountry" options="-parameters" />
+      <module name="PollutionProjectCountryPollution" options="-parameters" />
       <module name="PollutionProjectEdgeService" options="-parameters" />
+      <module name="PollutionProjectEurekaServer" options="-parameters" />
     </option>
   </component>
 </project>
