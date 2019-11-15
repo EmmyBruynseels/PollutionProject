@@ -10,5 +10,5 @@ import java.util.List;
 @CrossOrigin
 public interface CountryPollutionRepository extends JpaRepository<CountryPollution,String> {
     List<CountryPollution> findAll();
-    List<CountryPollution> findPollutionByCountryID(@Param("countryid")int id);
+    List<CountryPollution> findPollutionByCountryID(@Param("countryID")int id);
 }
