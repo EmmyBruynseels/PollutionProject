@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Continent {
-    private int id;
+    private Integer continentId;
     private String name;
 }
