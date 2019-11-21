@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -29,6 +28,26 @@ public class ListingController {
 
     }
 
+    @GetMapping("country/{name}")
+    public Country getCountryByName(@PathVariable("name") String name){
+
+        return restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
+
+    }
+
+    @GetMapping("countryPollution/{name}")
+    public Country getCountryPollutionByCountryName(@PathVariable("name") String name){
+
+        Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
+
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID=" + country.getId(), GenericResponseWrapper.class);
+        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
+
+        country.setCountryPollutions(countryPollutions);
+
+        return country;
+    }
+
     @GetMapping("continents/")
     public List<Continent> getAllContinents(){
 
@@ -37,29 +56,26 @@ public class ListingController {
 
     }
 
-    @GetMapping("country/{name}")
-    public List<ListingItem> getListingItemsByCountryName(@PathVariable("name") String name){
+    @GetMapping("continent/{name}")
+    public Continent getContinentByName(@PathVariable("name") String name){
 
-        Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
+        return restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByName?name=" + name, Continent.class);
 
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID="+country.getId(), GenericResponseWrapper.class);
-
-        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
-
-        List<ListingItem> returnList = new ArrayList<>();
-        for (CountryPollution cp: countryPollutions) {
-            returnList.add(new ListingItem(country.getName(), cp.getPollution(), cp.getYear()));
-        }
-        return returnList;
     }
 
-    @GetMapping("countryPollution/{id}")
-    public List<CountryPollution> getCountryPollution(@PathVariable("id") String id){
+    /*
+    TODO: functie zou moeten werken, maar kan niet testen omdat in ContinentPollution nog geen database gegevens zitten
+    @GetMapping("continentPollution/{name}")
+    public Continent getContinentPollutionByContinentName(@PathVariable("name") String name){
 
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID="+id, GenericResponseWrapper.class);
+        Continent continent = restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByName?name=" + name, Continent.class);
 
-        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinentPollution/continentPollutions/search/findPollutionByContinentID?continentID=" + continent.getContinentId(), GenericResponseWrapper.class);
+        List<ContinentPollution> continentPollutions = objectMapper.convertValue(wrapper.get_embedded().get("continentPollutions"), new TypeReference<List<ContinentPollution>>() { });
 
-        return countryPollutions;
+        continent.setContinentPollutions(continentPollutions);
+
+        return continent;
     }
+    */
 }
