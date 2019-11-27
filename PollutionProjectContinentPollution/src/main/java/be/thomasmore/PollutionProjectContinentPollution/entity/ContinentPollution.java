@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="continentPollution")
+@Table(name="continentpollution")
 @Data
 @NoArgsConstructor
 public class ContinentPollution {

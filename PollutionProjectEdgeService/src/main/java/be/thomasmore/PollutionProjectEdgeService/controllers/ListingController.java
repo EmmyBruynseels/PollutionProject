@@ -63,8 +63,6 @@ public class ListingController {
 
     }
 
-    /*
-    TODO: functie zou moeten werken, maar kan niet testen omdat in ContinentPollution nog geen database gegevens zitten
     @GetMapping("continentPollution/{name}")
     public Continent getContinentPollutionByContinentName(@PathVariable("name") String name){
 
@@ -77,5 +75,4 @@ public class ListingController {
 
         return continent;
     }
-    */
 }
