@@ -35,6 +35,13 @@ public class ListingController {
 
     }
 
+    @GetMapping("countryByContinent/{id}")
+    public List<Country> getCountryByContinent(@PathVariable("id") int id){
+
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountriesByContinentID?continentID=" + id,GenericResponseWrapper.class);
+        return objectMapper.convertValue(wrapper.get_embedded().get("countries"), new TypeReference<List<Country>>() { });
+    }
+
     @GetMapping("countryPollution/{name}")
     public Country getCountryPollutionByCountryName(@PathVariable("name") String name){
 
