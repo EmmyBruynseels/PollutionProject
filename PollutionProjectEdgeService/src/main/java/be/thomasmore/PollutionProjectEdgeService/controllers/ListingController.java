@@ -70,6 +70,13 @@ public class ListingController {
 
     }
 
+    @GetMapping("continentById/{id}")
+    public Continent getContinentById(@PathVariable("id") int id){
+
+        return restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByContinentId?continentId=" + id, Continent.class);
+
+    }
+
     @GetMapping("continentPollution/{name}")
     public Continent getContinentPollutionByContinentName(@PathVariable("name") String name){
 

@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/../PollutionProjectCountryPollution/PollutionProjectCountryPollution.iml" filepath="$PROJECT_DIR$/../PollutionProjectCountryPollution/PollutionProjectCountryPollution.iml" />
       <module fileurl="file://$PROJECT_DIR$/PollutionProjectEdgeService.iml" filepath="$PROJECT_DIR$/PollutionProjectEdgeService.iml" />
       <module fileurl="file://$PROJECT_DIR$/../PollutionProjectEurekaServer/PollutionProjectEurekaServer.iml" filepath="$PROJECT_DIR$/../PollutionProjectEurekaServer/PollutionProjectEurekaServer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PollutionProjectZuul/PollutionProjectZuul.iml" filepath="$PROJECT_DIR$/../PollutionProjectZuul/PollutionProjectZuul.iml" />
     </modules>
   </component>
 </project>

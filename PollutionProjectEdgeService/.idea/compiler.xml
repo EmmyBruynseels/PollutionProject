@@ -11,6 +11,7 @@
         <module name="PollutionProjectEdgeService" />
         <module name="PollutionProjectCountry" />
         <module name="PollutionProjectContinent" />
+        <module name="PollutionProjectZuul" />
         <module name="PollutionProjectEurekaServer" />
       </profile>
     </annotationProcessing>
@@ -21,6 +22,7 @@
       <module name="PollutionProjectCountryPollution" target="1.8" />
       <module name="PollutionProjectEdgeService" target="1.8" />
       <module name="PollutionProjectEurekaServer" target="1.8" />
+      <module name="PollutionProjectZuul" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -31,6 +33,7 @@
       <module name="PollutionProjectCountryPollution" options="-parameters" />
       <module name="PollutionProjectEdgeService" options="-parameters" />
       <module name="PollutionProjectEurekaServer" options="-parameters" />
+      <module name="PollutionProjectZuul" options="-parameters" />
     </option>
   </component>
 </project>
