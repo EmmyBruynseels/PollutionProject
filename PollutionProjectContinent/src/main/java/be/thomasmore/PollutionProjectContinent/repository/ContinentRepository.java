@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface ContinentRepository  extends MongoRepository<Continent, String> {
     Continent findContinentByContinentId(@Param("continentId") int continentId);
-    Continent findContinentByName(@Param("name") String name);
+    /*Continent findContinentByName(@Param("name") String name);*/
+    Continent findContinentById(@Param("id") int id);
 }
