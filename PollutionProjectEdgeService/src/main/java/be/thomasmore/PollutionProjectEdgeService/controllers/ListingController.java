@@ -3,6 +3,7 @@ package be.thomasmore.PollutionProjectEdgeService.controllers;
 import be.thomasmore.PollutionProjectEdgeService.models.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -22,6 +23,7 @@ public class ListingController {
     @Autowired
     private ObjectMapper objectMapper;
 
+    // Return list of all countries
     @GetMapping("countries/")
     public List<Country> getAllCountries() {
 
@@ -31,12 +33,7 @@ public class ListingController {
 
     }
 
-    /* @GetMapping("country/{name}")
-      public Country getCountryByName(@PathVariable("name") String name){
-
-          return restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
-
-      }*/
+    // Return country for given id
     @GetMapping("country/{id}")
     public Country getCountryById(@PathVariable("id") int id) {
 
@@ -44,6 +41,7 @@ public class ListingController {
 
     }
 
+    // Return list of countries for given continentId
     @GetMapping("countryByContinent/{id}")
     public List<Country> getCountryByContinent(@PathVariable("id") int id) {
 
@@ -52,18 +50,7 @@ public class ListingController {
         });
     }
 
-    /*@GetMapping("countryPollution/{name}")
-    public Country getCountryPollutionByCountryName(@PathVariable("name") String name){
-
-        Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
-
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID=" + country.getId(), GenericResponseWrapper.class);
-        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
-
-        country.setCountryPollutions(countryPollutions);
-
-        return country;
-    }*/
+    // Return country with pollution for given id
     @GetMapping("countryPollution/{id}")
     public Country getCountryPollutionByCountryID(@PathVariable("id") int id) {
         Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryById?id=" + id, Country.class);
@@ -77,6 +64,7 @@ public class ListingController {
         return country;
     }
 
+    // Return list of all continents
     @GetMapping("continents/")
     public List<Continent> getAllContinents() {
 
@@ -86,6 +74,7 @@ public class ListingController {
 
     }
 
+    // Return continent for given name
     @GetMapping("continent/{name}")
     public Continent getContinentByName(@PathVariable("name") String name) {
 
@@ -93,6 +82,7 @@ public class ListingController {
 
     }
 
+    // Return continent for given id
     @GetMapping("continentById/{id}")
     public Continent getContinentById(@PathVariable("id") int id) {
 
@@ -100,18 +90,7 @@ public class ListingController {
 
     }
 
-    /* @GetMapping("continentPollution/{name}")
-     public Continent getContinentPollutionByContinentName(@PathVariable("name") String name){
-
-         Continent continent = restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByName?name=" + name, Continent.class);
-
-         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinentPollution/continentPollutions/search/findPollutionByContinentID?continentID=" + continent.getContinentId(), GenericResponseWrapper.class);
-         List<ContinentPollution> continentPollutions = objectMapper.convertValue(wrapper.get_embedded().get("continentPollutions"), new TypeReference<List<ContinentPollution>>() { });
-
-         continent.setContinentPollutions(continentPollutions);
-
-         return continent;
-     }*/
+    // Return continent with pollution for given id
     @GetMapping("continentPollution/{id}")
     public Continent getContinentPollutionByContinentId(@PathVariable("id") int id) {
 
@@ -126,10 +105,28 @@ public class ListingController {
         return continent;
     }
 
-
+    // Delete country
     @DeleteMapping("/country/{id}")
     private void deleteCountryById(@PathVariable("id") int id) {
         restTemplate.delete("http://PollutionProjectCountry/countries/deleteCountryById?id=" + id);
+    }
+
+    // Update country
+    @PutMapping("country/")
+    public void putCountry(@RequestBody Country country) {
+        restTemplate.put("http://PollutionProjectCountry/countries/" + country.getId(), country, String.class);
+    }
+
+    // Update countrypollution
+    @PutMapping("countryPollution/")
+    public void putCountryPollution(@RequestBody CountryPollution countryPollution) {
+        restTemplate.put("http://PollutionProjectCountryPollution/countryPollutions/" + countryPollution.getId(), countryPollution, String.class);
+    }
+
+    // Update continentpollution
+    @PutMapping("continentPollution/")
+    public void putContinentPollution(@RequestBody ContinentPollution continentPollution) {
+        restTemplate.put("http://PollutionProjectContinentPollution/continentPollutions/" + continentPollution.getId(), continentPollution, String.class);
     }
 
 }

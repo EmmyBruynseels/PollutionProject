@@ -10,7 +10,7 @@ import java.util.List;
 @CrossOrigin
 public interface CountryRepository extends JpaRepository<Country,String> {
     Country findCountryByName(@Param("name") String name);
-    Country findCountryById(@Param("id") int id);
+    Country findCountryById(@Param("id") String id);
     List<Country> findCountriesByContinentID(@Param("continentID") int continentID);
     //long deleteCountryById( @Param("id")int id);
 }

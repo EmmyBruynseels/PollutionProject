@@ -13,7 +13,7 @@ public class ContinentPollution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private String id;
     @Column(name="continentID")
     private int continentID;
     @Column(name="year")
