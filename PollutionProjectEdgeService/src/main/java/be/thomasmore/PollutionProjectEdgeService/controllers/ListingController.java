@@ -23,31 +23,33 @@ public class ListingController {
     private ObjectMapper objectMapper;
 
     @GetMapping("countries/")
-    public List<Country> getAllCountries(){
+    public List<Country> getAllCountries() {
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountry/countries/", GenericResponseWrapper.class);
-        return objectMapper.convertValue(wrapper.get_embedded().get("countries"), new TypeReference<List<Country>>() { });
+        return objectMapper.convertValue(wrapper.get_embedded().get("countries"), new TypeReference<List<Country>>() {
+        });
 
     }
 
-  /* @GetMapping("country/{name}")
-    public Country getCountryByName(@PathVariable("name") String name){
+    /* @GetMapping("country/{name}")
+      public Country getCountryByName(@PathVariable("name") String name){
 
-        return restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
+          return restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryByName?name=" + name, Country.class);
 
-    }*/
+      }*/
     @GetMapping("country/{id}")
-    public Country getCountryById(@PathVariable("id") int id){
+    public Country getCountryById(@PathVariable("id") int id) {
 
         return restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryById?id=" + id, Country.class);
 
     }
 
     @GetMapping("countryByContinent/{id}")
-    public List<Country> getCountryByContinent(@PathVariable("id") int id){
+    public List<Country> getCountryByContinent(@PathVariable("id") int id) {
 
-        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountriesByContinentID?continentID=" + id,GenericResponseWrapper.class);
-        return objectMapper.convertValue(wrapper.get_embedded().get("countries"), new TypeReference<List<Country>>() { });
+        GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountriesByContinentID?continentID=" + id, GenericResponseWrapper.class);
+        return objectMapper.convertValue(wrapper.get_embedded().get("countries"), new TypeReference<List<Country>>() {
+        });
     }
 
     /*@GetMapping("countryPollution/{name}")
@@ -63,12 +65,12 @@ public class ListingController {
         return country;
     }*/
     @GetMapping("countryPollution/{id}")
-    public Country getCountryPollutionByCountryID(@PathVariable("id") int id){
-
+    public Country getCountryPollutionByCountryID(@PathVariable("id") int id) {
         Country country = restTemplate.getForObject("http://PollutionProjectCountry/countries/search/findCountryById?id=" + id, Country.class);
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectCountryPollution/countryPollutions/search/findPollutionByCountryID?countryID=" + country.getId(), GenericResponseWrapper.class);
-        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() { });
+        List<CountryPollution> countryPollutions = objectMapper.convertValue(wrapper.get_embedded().get("countryPollutions"), new TypeReference<List<CountryPollution>>() {
+        });
 
         country.setCountryPollutions(countryPollutions);
 
@@ -76,51 +78,54 @@ public class ListingController {
     }
 
     @GetMapping("continents/")
-    public List<Continent> getAllContinents(){
+    public List<Continent> getAllContinents() {
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinent/continents/", GenericResponseWrapper.class);
-        return objectMapper.convertValue(wrapper.get_embedded().get("continents"), new TypeReference<List<Continent>>() { });
+        return objectMapper.convertValue(wrapper.get_embedded().get("continents"), new TypeReference<List<Continent>>() {
+        });
 
     }
 
     @GetMapping("continent/{name}")
-    public Continent getContinentByName(@PathVariable("name") String name){
+    public Continent getContinentByName(@PathVariable("name") String name) {
 
         return restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByName?name=" + name, Continent.class);
 
     }
 
     @GetMapping("continentById/{id}")
-    public Continent getContinentById(@PathVariable("id") int id){
+    public Continent getContinentById(@PathVariable("id") int id) {
 
         return restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByContinentId?continentId=" + id, Continent.class);
 
     }
 
-   /* @GetMapping("continentPollution/{name}")
-    public Continent getContinentPollutionByContinentName(@PathVariable("name") String name){
+    /* @GetMapping("continentPollution/{name}")
+     public Continent getContinentPollutionByContinentName(@PathVariable("name") String name){
 
-        Continent continent = restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByName?name=" + name, Continent.class);
+         Continent continent = restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByName?name=" + name, Continent.class);
+
+         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinentPollution/continentPollutions/search/findPollutionByContinentID?continentID=" + continent.getContinentId(), GenericResponseWrapper.class);
+         List<ContinentPollution> continentPollutions = objectMapper.convertValue(wrapper.get_embedded().get("continentPollutions"), new TypeReference<List<ContinentPollution>>() { });
+
+         continent.setContinentPollutions(continentPollutions);
+
+         return continent;
+     }*/
+    @GetMapping("continentPollution/{id}")
+    public Continent getContinentPollutionByContinentId(@PathVariable("id") int id) {
+
+        Continent continent = restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentByContinentId?continentId=" + id, Continent.class);
 
         GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinentPollution/continentPollutions/search/findPollutionByContinentID?continentID=" + continent.getContinentId(), GenericResponseWrapper.class);
-        List<ContinentPollution> continentPollutions = objectMapper.convertValue(wrapper.get_embedded().get("continentPollutions"), new TypeReference<List<ContinentPollution>>() { });
+        List<ContinentPollution> continentPollutions = objectMapper.convertValue(wrapper.get_embedded().get("continentPollutions"), new TypeReference<List<ContinentPollution>>() {
+        });
 
         continent.setContinentPollutions(continentPollutions);
 
         return continent;
-    }*/
-   @GetMapping("continentPollution/{id}")
-   public Continent getContinentPollutionByContinentId(@PathVariable("id") int id){
+    }
 
-       Continent continent = restTemplate.getForObject("http://PollutionProjectContinent/continents/search/findContinentById?id=" + id, Continent.class);
-
-       GenericResponseWrapper wrapper = restTemplate.getForObject("http://PollutionProjectContinentPollution/continentPollutions/search/findPollutionByContinentID?continentID=" + continent.getContinentId(), GenericResponseWrapper.class);
-       List<ContinentPollution> continentPollutions = objectMapper.convertValue(wrapper.get_embedded().get("continentPollutions"), new TypeReference<List<ContinentPollution>>() { });
-
-       continent.setContinentPollutions(continentPollutions);
-
-       return continent;
-   }
 
     @DeleteMapping("/country/{id}")
     private void deleteCountryById(@PathVariable("id") int id) {
