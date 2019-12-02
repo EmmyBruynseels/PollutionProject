@@ -105,10 +105,10 @@ public class ListingController {
         return continent;
     }
 
-    // Delete country
-    @DeleteMapping("/country/{id}")
-    private void deleteCountryById(@PathVariable("id") int id) {
-        restTemplate.delete("http://PollutionProjectCountry/countries/deleteCountryById?id=" + id);
+    // Insert country
+    @PostMapping("country/")
+    public void postCountry(@RequestBody Country country) {
+        restTemplate.postForEntity("http://PollutionProjectCountry/countries/", country, String.class);
     }
 
     // Update country
@@ -117,16 +117,46 @@ public class ListingController {
         restTemplate.put("http://PollutionProjectCountry/countries/" + country.getId(), country, String.class);
     }
 
+    // Delete country
+    @DeleteMapping("country/{id}")
+    private void deleteCountry(@PathVariable("id") int id) {
+        restTemplate.delete("http://PollutionProjectCountry/countries/" + id);
+    }
+
+    // Insert countrypollution
+    @PostMapping("countryPollution/")
+    public void postCountryPollution(@RequestBody CountryPollution countryPollution) {
+        restTemplate.postForEntity("http://PollutionProjectCountryPollution/countryPollutions/", countryPollution, String.class);
+    }
+
     // Update countrypollution
     @PutMapping("countryPollution/")
     public void putCountryPollution(@RequestBody CountryPollution countryPollution) {
         restTemplate.put("http://PollutionProjectCountryPollution/countryPollutions/" + countryPollution.getId(), countryPollution, String.class);
     }
 
+    // Delete countrypollution
+    @DeleteMapping("countryPollution/{id}")
+    private void deleteCountryPollution(@PathVariable("id") int id) {
+        restTemplate.delete("http://PollutionProjectCountryPollution/countryPollutions/" + id);
+    }
+
+    // Insert continentPollution
+    @PostMapping("continentPollution/")
+    public void postContinentPollution(@RequestBody ContinentPollution continentPollution) {
+        restTemplate.postForEntity("http://PollutionProjectContinentPollution/continentPollutions/", continentPollution, String.class);
+    }
+
     // Update continentpollution
     @PutMapping("continentPollution/")
     public void putContinentPollution(@RequestBody ContinentPollution continentPollution) {
         restTemplate.put("http://PollutionProjectContinentPollution/continentPollutions/" + continentPollution.getId(), continentPollution, String.class);
+    }
+
+    // Delete continentpollution
+    @DeleteMapping("continentPollution/{id}")
+    private void deleteContinentPollution(@PathVariable("id") int id) {
+        restTemplate.delete("http://PollutionProjectContinentPollution/continentPollutions/" + id);
     }
 
 }
