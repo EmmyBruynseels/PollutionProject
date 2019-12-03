@@ -11,10 +11,12 @@ We created the following parts:
 - Zuul Gateway
 
 Our databases contain data on:
-- Country
-- Country Pollution
-- Continent
-- Continent Pollution
+- Country (Azure)
+- Continent (MongoDB)
+- Country Pollution (Azure)
+- Continent Pollution (Azure)
+
+When starting the server, make sure you start them in the order listed above, from top to bottom.
 
 ### Front-end
 The front-end of our application is written in Angular.
